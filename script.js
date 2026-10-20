@@ -66,3 +66,77 @@ forms.forEach((formEl) => {
     }
   });
 });
+
+const categoryResults = document.getElementById('category-projects');
+if (categoryResults) {
+  const projectCategories = {
+    architecture: 'Architecture',
+    'urban-planning': 'Urban Planning',
+    'site-planning': 'Site Planning',
+    'gis-remote-sensing': 'GIS & Remote Sensing'
+  };
+  const projects = [
+    {
+      category: 'architecture',
+      name: 'Chennai Eye Care Hospital',
+      area: 'Healthcare',
+      image: 'EyeHospital_Exterior1_Architecture.png',
+      imageAlt: 'Street-facing exterior of Chennai Eye Care Hospital',
+      description: 'A welcoming healthcare environment with carefully planned patient, clinical, and support spaces.',
+      href: 'project-detail.html'
+    }
+  ];
+  const categoryId = new URLSearchParams(window.location.search).get('type');
+  const categoryName = projectCategories[categoryId];
+  const titleNode = document.getElementById('category-title');
+  const subtitleNode = document.getElementById('category-subtitle');
+
+  if (titleNode) {
+    titleNode.textContent = categoryName || 'Project type not found';
+  }
+  if (subtitleNode) {
+    subtitleNode.textContent = categoryName ? `${categoryName} projects` : 'Choose a project type to browse work.';
+  }
+  document.title = `${categoryName || 'Project Type'} | blocOne Studio`;
+
+  const matchingProjects = projects.filter((project) => project.category === categoryId);
+  if (matchingProjects.length === 0) {
+    const emptyState = document.createElement('div');
+    emptyState.className = 'category-empty reveal visible';
+    const message = document.createElement('p');
+    message.textContent = categoryName
+      ? 'Projects will be added here.'
+      : 'This project type is not available.';
+    emptyState.append(message);
+    categoryResults.append(emptyState);
+  } else {
+    matchingProjects.forEach((project) => {
+      const card = document.createElement('a');
+      card.className = 'category-project-card reveal visible';
+      card.href = project.href;
+
+      const image = document.createElement('img');
+      image.src = project.image;
+      image.alt = project.imageAlt;
+      image.loading = 'lazy';
+      image.decoding = 'async';
+
+      const content = document.createElement('div');
+      content.className = 'category-project-copy';
+      const area = document.createElement('span');
+      area.className = 'project-type-label';
+      area.textContent = `${project.area} / ${projectCategories[project.category]}`;
+      const name = document.createElement('h3');
+      name.textContent = project.name;
+      const description = document.createElement('p');
+      description.textContent = project.description;
+      const action = document.createElement('span');
+      action.className = 'project-type-action';
+      action.textContent = 'View project';
+
+      content.append(area, name, description, action);
+      card.append(image, content);
+      categoryResults.append(card);
+    });
+  }
+}

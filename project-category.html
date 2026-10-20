@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse blocOne Studio projects by project type." />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self' https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co;" />
+    <title>Project Type | blocOne Studio</title>
+    <link rel="icon" href="logo_blocOne.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar"><span>Strategic Design. Trusted Delivery.</span></div>
+
+    <header class="site-header">
+      <nav class="container nav" aria-label="Main navigation">
+        <a href="index.html" class="brand" aria-label="blocOne Studio home"><img src="logo_blocOne.png" alt="blocOne Studio logo" /></a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="projects.html" class="active">Projects</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero projects-hero">
+        <div class="container">
+          <p class="eyebrow">Project portfolio</p>
+          <h1 id="category-title">Projects</h1>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <a class="project-back-link" href="projects.html">&larr; All project types</a>
+          <div class="section-heading category-heading">
+            <p class="section-tag">Selected work</p>
+            <h2 id="category-subtitle">Projects by type</h2>
+          </div>
+          <div class="category-project-grid" id="category-projects" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div><a href="index.html" class="brand footer-brand"><img src="logo_blocOne.png" alt="blocOne Studio logo" /></a><p>Strategic consultancy for architecture, urban planning, project management, and cost control.</p></div>
+        <div><h3>Contact</h3><ul><li><a href="mailto:bloconestudio@gmail.com">bloconestudio@gmail.com</a></li><li><a href="tel:+918882616604">+91 88882 616604</a></li><li>Jamia Nagar, New Delhi, 110025</li></ul></div>
+        <div><h3>Explore</h3><ul><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li></ul></div>
+        <div><h3>Start a conversation</h3><a class="btn btn-primary btn-block" href="contact.html">Contact us</a></div>
+      </div>
+      <div class="container footer-bottom"><span>&copy; <span id="year"></span> blocOne Studio. All rights reserved.</span></div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

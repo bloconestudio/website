@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="See selected projects and portfolio work by blocOne Studio across architecture, planning, and project delivery." />
+    <meta name="description" content="Browse blocOne Studio projects by architecture, urban planning, site planning, GIS, and remote sensing." />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self' https://formsubmit.co; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co;" />
-    <title>Projects | blocOne Studio</title>
+    <title>Projects by Type | blocOne Studio</title>
     <link rel="icon" href="logo_blocOne.png" type="image/png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -34,24 +34,42 @@
       <section class="page-hero projects-hero">
         <div class="container">
           <p class="eyebrow">Selected work</p>
-          <h1>Projects that balance growth, identity, and value.</h1>
+          <h1>Projects by type</h1>
         </div>
       </section>
 
       <section class="section">
-        <div class="container project-grid large-projects">
-          <article class="project-card project-one reveal">
-            <div class="project-overlay"><p>Residential Masterplan</p><h3>Greenfield community</h3></div>
-          </article>
-          <article class="project-card project-two reveal">
-            <div class="project-overlay"><p>Commercial Development</p><h3>Mixed-use innovation hub</h3></div>
-          </article>
-          <article class="project-card project-three reveal">
-            <div class="project-overlay"><p>Public Infrastructure</p><h3>Mobility and civic precinct</h3></div>
-          </article>
-          <article class="project-card project-four reveal">
-            <div class="project-overlay"><p>Institutional Campus</p><h3>Academic environment design</h3></div>
-          </article>
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="section-tag">Browse our portfolio</p>
+            <h2>Explore work by discipline.</h2>
+          </div>
+          <div class="project-type-grid">
+            <a class="project-type-card reveal" href="project-category.html?type=architecture">
+              <span class="project-type-label">Built environment</span>
+              <h3>Architecture</h3>
+              <p>Buildings shaped around people, purpose, and place.</p>
+              <span class="project-type-action">View projects</span>
+            </a>
+            <a class="project-type-card reveal" href="project-category.html?type=urban-planning">
+              <span class="project-type-label">City and community</span>
+              <h3>Urban Planning</h3>
+              <p>Plans and frameworks for connected, resilient places.</p>
+              <span class="project-type-action">View projects</span>
+            </a>
+            <a class="project-type-card reveal" href="project-category.html?type=site-planning">
+              <span class="project-type-label">Site development</span>
+              <h3>Site Planning</h3>
+              <p>Site layouts balancing access, use, landscape, and infrastructure.</p>
+              <span class="project-type-action">View projects</span>
+            </a>
+            <a class="project-type-card reveal" href="project-category.html?type=gis-remote-sensing">
+              <span class="project-type-label">Spatial intelligence</span>
+              <h3>GIS &amp; Remote Sensing</h3>
+              <p>Mapping and earth observation for informed project decisions.</p>
+              <span class="project-type-action">View projects</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>

@@ -315,14 +315,29 @@ textarea {
 }
 
 .panel-card {
+  position: relative;
   width: min(100%, 440px);
   background: linear-gradient(180deg, rgba(29,29,29,0.98), rgba(17,17,17,0.98));
   border: 1px solid var(--line);
   border-radius: 28px;
   padding: 2rem;
   box-shadow: 0 28px 70px var(--shadow);
-  transform: perspective(1200px) rotateY(-8deg) rotateX(4deg);
-  animation: floatCard 7s ease-in-out infinite;
+}
+
+.panel-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.35s ease;
+  pointer-events: none;
+}
+
+.panel-card:hover::before {
+  width: 25%;
 }
 
 .panel-label {
@@ -454,7 +469,11 @@ textarea {
 }
 
 .service-card:hover::before {
-  width: calc(100% - 3.5rem);
+  width: 25%;
+}
+
+.service-card:focus-within::before {
+  width: 25%;
 }
 
 .service-card h3 {
@@ -628,10 +647,27 @@ textarea {
 }
 
 .process-item {
+  position: relative;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 1.75rem;
+}
+
+.process-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.75rem;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.35s ease;
+  pointer-events: none;
+}
+
+.process-item:hover::before {
+  width: 25%;
 }
 
 .process-item span {
@@ -656,85 +692,115 @@ textarea {
   background: rgba(255, 255, 255, 0.01);
 }
 
-.home-featured-work {
+.home-project-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-  align-items: center;
-  gap: 3rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
 }
 
-.home-work-image {
-  display: block;
+.home-project-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--panel);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.home-work-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform 0.5s ease;
-}
-
-.home-work-image:hover img {
-  transform: scale(1.025);
-}
-
-.home-work-copy h3 {
-  margin: 0 0 1rem;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  line-height: 1.1;
-}
-
-.home-work-copy > p:not(.section-tag) {
-  margin: 0 0 1.5rem;
-  color: rgba(242, 233, 223, 0.8);
-}
-
-.home-projects-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  margin-top: 1.75rem;
-  padding: 1rem 0 0;
-  border-top: 1px solid var(--line);
-  color: var(--accent-strong);
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.home-projects-link::before {
+.home-project-card:not(.home-project-more)::before {
   content: "";
   position: absolute;
-  top: -1px;
-  left: 0;
+  z-index: 1;
+  top: 0;
+  left: 1rem;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.35s ease;
+  pointer-events: none;
+}
+
+.home-project-card:not(.home-project-more):hover::before,
+.home-project-card:not(.home-project-more):focus-visible::before {
+  width: 25%;
+}
+
+.home-project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(215, 201, 180, 0.5);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26);
+}
+
+.home-project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.home-project-card > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.home-project-card:hover > img {
+  transform: scale(1.04);
+}
+
+.home-project-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.1rem;
+}
+
+.home-project-copy h3,
+.home-project-more h3 {
+  margin: 0.6rem 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.home-project-copy p,
+.home-project-more p {
+  margin: 0;
+  color: rgba(242, 233, 223, 0.78);
+}
+
+.home-project-card .project-type-action {
+  padding-top: 1rem;
+}
+
+.home-project-more {
+  position: relative;
+  justify-content: center;
+  padding: 1.4rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012));
+}
+
+.home-project-more::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.4rem;
   width: 2.5rem;
   height: 2px;
   background: var(--accent);
   transition: width 0.35s ease;
 }
 
-.home-projects-link::after {
-  content: "->";
-  margin-left: 0.6rem;
-  color: var(--accent);
-  transition: transform 0.25s ease;
+.home-project-more:hover::before {
+  width: 25%;
 }
 
-.home-projects-link:hover::before {
-  width: 100%;
-}
-
-.home-projects-link:hover::after {
-  transform: translateX(4px);
-}
-
-.home-projects-link:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+.home-project-more:focus-visible::before {
+  width: 25%;
 }
 
 .project-feature-section {
@@ -827,7 +893,7 @@ textarea {
 }
 
 .project-type-card:hover::before {
-  width: 4rem;
+  width: 25%;
 }
 
 .project-type-card:focus-visible,
@@ -891,7 +957,7 @@ textarea {
 
 .category-project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 460px));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -902,12 +968,21 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--panel);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-project-card:nth-child(3n + 2) {
+  transition-delay: 80ms;
+}
+
+.category-project-card:nth-child(3n) {
+  transition-delay: 160ms;
 }
 
 .category-project-card:hover {
   transform: translateY(-4px);
   border-color: rgba(215, 201, 180, 0.5);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26);
 }
 
 .category-project-card > img {
@@ -915,6 +990,15 @@ textarea {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.category-project-card:hover > img {
+  transform: scale(1.04);
+}
+
+.project-page .page-hero .container {
+  animation: scopeHeroIn 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .category-project-copy {
@@ -1050,6 +1134,7 @@ textarea {
 }
 
 .cta-box {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1059,6 +1144,23 @@ textarea {
   border-radius: 24px;
   background: linear-gradient(135deg, rgba(215, 201, 180, 0.1), rgba(255,255,255,0.02));
   box-shadow: 0 28px 60px rgba(0,0,0,0.18);
+}
+
+.cta-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 2.25rem;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.35s ease;
+  pointer-events: none;
+}
+
+.cta-box:hover::before,
+.cta-box:focus-within::before {
+  width: 25%;
 }
 
 .site-footer {
@@ -1171,6 +1273,10 @@ textarea {
   transform: translateY(0);
 }
 
+.tilt-card {
+  rotate: var(--tilt-axis-x, 0) var(--tilt-axis-y, 1) 0 var(--tilt-angle, 0deg);
+}
+
 .form-status {
   min-height: 1.5rem;
   margin: 0;
@@ -1205,7 +1311,7 @@ textarea {
 @media (max-width: 960px) {
   .hero-grid,
   .two-column,
-  .home-featured-work,
+  .home-project-grid,
   .project-intro,
   .services-grid,
   .process-grid,
@@ -1227,6 +1333,10 @@ textarea {
   }
 
   .project-type-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .category-project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1338,7 +1448,7 @@ textarea {
 
   .two-column,
   .contact-layout,
-  .home-featured-work,
+  .home-project-grid,
   .project-intro,
   .scope-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -1354,6 +1464,7 @@ textarea {
   .process-grid,
   .project-grid,
   .project-image-grid,
+  .category-project-grid,
   .project-type-grid,
   .values-grid,
   .footer-grid,
@@ -1409,10 +1520,6 @@ textarea {
 
   .project-intro {
     padding: 2.75rem 0;
-  }
-
-  .home-featured-work {
-    gap: 1.75rem;
   }
 
   .cta-box {
